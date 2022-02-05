@@ -6,10 +6,15 @@ namespace MJT.Voord.VoordApp.ServiceFactories;
 
 public class PollLoadingServiceFactory : IPollLoadingServiceFactory
 {
+    private readonly IFileSystem _fileSystem;
+
+    public PollLoadingServiceFactory(IFileSystem fileSystem)
+    {
+        _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
+    }
+    
     public IPollLoadingService CreateInstance()
     {
-        IFileSystem fileSystem = new FileSystem();
-
-        return new CsvPollLoader(fileSystem);
+        return new CsvPollLoader(_fileSystem);
     }
 }
