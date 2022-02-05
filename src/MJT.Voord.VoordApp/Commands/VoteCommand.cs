@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using MJT.Voord.Data.DataGatewayService.Api;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -6,6 +7,13 @@ namespace MJT.Voord.VoordApp.Commands;
 
 public class VoteCommand : Command<VoteCommand.Settings>
 {
+    private readonly IDataGatewayService _dataGatewayService;
+
+    public VoteCommand(IDataGatewayService dataGatewayService)
+    {
+        _dataGatewayService = dataGatewayService;
+    }
+
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
         AnsiConsole.WriteLine("CreateCommand says hello world.");

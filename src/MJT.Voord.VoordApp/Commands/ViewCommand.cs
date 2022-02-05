@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using MJT.Voord.Data.DataGatewayService.Api;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -6,6 +7,13 @@ namespace MJT.Voord.VoordApp.Commands;
 
 public class ViewCommand : Command<ViewCommand.Settings>
 {
+    private readonly IDataGatewayService _dataGatewayService;
+
+    public ViewCommand(IDataGatewayService dataGatewayService)
+    {
+        _dataGatewayService = dataGatewayService ?? throw new ArgumentNullException(nameof(dataGatewayService));
+    }
+
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
         AnsiConsole.WriteLine("CreateCommand says hello world.");
