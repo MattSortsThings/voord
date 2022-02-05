@@ -21,9 +21,18 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
         RenderSessionHeader(settings.PollName, settings.SrcFilePath);
+        
+        ValidationResult x = settings.Validate();
+        if (!x.Successful)
+        {
+            AnsiConsole.WriteLine(x.Message!);
+
+            return (int)ExitCodes.InvalidCommandArgsError;
+        }
+
         try
         {
-            RunExecutionPath(settings.PollName, settings.SrcFilePath);
+            RunExecutionPath(settings.SrcFilePath);
         }
         catch (PollLoadingServiceException e)
         {
@@ -41,7 +50,7 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
         return (int)ExitCodes.Success;
     }
 
-    private void RunExecutionPath(string pollName, string srcFilePath)
+    private void RunExecutionPath(string srcFilePath)
     {
         SetupAppData();
         Poll newPoll = LoadNewPoll(srcFilePath);
@@ -78,15 +87,12 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
         AnsiConsole.WriteLine();
     }
 
-    public sealed class Settings : CommandSettings
+    public sealed class Settings : BaseSettings
     {
-        public Settings(string pollName, string srcFilePath)
+        public Settings(string pollName, string srcFilePath) : base(pollName)
         {
-            PollName = pollName ?? throw new ArgumentNullException(nameof(pollName));
             SrcFilePath = srcFilePath ?? throw new ArgumentNullException(nameof(srcFilePath));
         }
-
-        [CommandArgument(0, "<PollName>")] public string PollName { get; set; }
 
         [CommandArgument(1, "<SrcFilePath>")] public string SrcFilePath { get; }
     }

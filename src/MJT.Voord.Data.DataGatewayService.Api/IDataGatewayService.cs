@@ -11,4 +11,6 @@ public interface IDataGatewayService
     void LoadSeedData();
 
     void Persist(string pollName, Poll poll);
+
+    Poll LoadPoll(string pollName);
 }

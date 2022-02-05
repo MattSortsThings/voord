@@ -59,4 +59,35 @@ public class JsonDataGateway : IDataGatewayService
         Console.WriteLine("Data gateway is persisting a poll called " + pollName + " with " + poll.Candidates.Count +
                           "candidates");
     }
+
+    public Poll LoadPoll(string pollName)
+    {
+        _ = pollName ?? throw new ArgumentNullException(nameof(pollName));
+
+        try
+        {
+            return SelectByPollName(pollName);
+        }
+        catch (Exception e)
+        {
+            throw new DataGatewayServiceException("Something went wrong with the data gateway.", e);
+        }
+    }
+
+    private Poll SelectByPollName(string pollName)
+    {
+        PollPersistenceModel? selected = LoadAllAppData().Polls.FirstOrDefault(x => x.PollName == pollName);
+
+        return selected != null
+            ? selected.Poll
+            : throw new KeyNotFoundException("No poll with that name.");
+    }
+
+    private Persistence LoadAllAppData()
+    {
+        string json = _fileSystem.File.ReadAllText(_appDataFilePath);
+
+        return JsonSerializer.Deserialize<Persistence>(json) ??
+               throw new InvalidOperationException("Unable to deserialize JSON.");
+    }
 }

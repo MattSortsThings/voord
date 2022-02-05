@@ -16,20 +16,37 @@ public class ViewCommand : Command<ViewCommand.Settings>
 
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
-        AnsiConsole.WriteLine("CreateCommand says hello world.");
+        RenderSessionHeader(settings.PollName);
+        
+        ValidationResult x = settings.Validate();
+        if (!x.Successful)
+        {
+            AnsiConsole.WriteLine(x.Message!);
 
-        AnsiConsole.WriteLine("The poll name is: " + settings.PollName);
+            return (int)ExitCodes.InvalidCommandArgsError;
+        }
 
         return 0;
     }
 
-    public sealed class Settings : CommandSettings
+    private static void RenderSessionHeader(string pollName)
     {
-        public Settings(string pollName)
+        var rule = new Rule("[cornflowerblue]Voord - Developed by Matt Tantony - February 2022[/]")
         {
-            PollName = pollName ?? throw new ArgumentNullException(nameof(pollName));
-        }
+            Alignment = Justify.Left
+        };
+        AnsiConsole.Write(rule);
 
-        [CommandArgument(0, "<PollName>")] public string PollName { get; }
+        AnsiConsole.WriteLine();
+        var panel = new Panel($"[bold]Poll Name: [/]{pollName}");
+        AnsiConsole.Write(panel);
+        AnsiConsole.WriteLine();
+    }
+
+    public sealed class Settings : BaseSettings
+    {
+        public Settings(string pollName) : base(pollName)
+        {
+        }
     }
 }

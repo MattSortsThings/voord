@@ -16,24 +16,40 @@ public class VoteCommand : Command<VoteCommand.Settings>
 
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
-        AnsiConsole.WriteLine("CreateCommand says hello world.");
+        RenderSessionHeader(settings.PollName, settings.JurorName);
 
-        AnsiConsole.WriteLine("The poll name is: " + settings.PollName);
-        AnsiConsole.WriteLine("The juror name is: " + settings.JurorName);
+        ValidationResult x = settings.Validate();
+        if (!x.Successful)
+        {
+            AnsiConsole.WriteLine(x.Message!);
+
+            return (int)ExitCodes.InvalidCommandArgsError;
+        }
 
         return 0;
     }
-
-    public sealed class Settings : CommandSettings
+    
+    private static void RenderSessionHeader(string pollName, string jurorName)
     {
-        public Settings(string pollName, string jurorName)
+        var rule = new Rule("[cornflowerblue]Voord - Developed by Matt Tantony - February 2022[/]")
         {
-            PollName = pollName ?? throw new ArgumentNullException(nameof(pollName));
+            Alignment = Justify.Left
+        };
+        AnsiConsole.Write(rule);
+
+        AnsiConsole.WriteLine();
+        var panel = new Panel($"[bold]Poll Name: [/]{pollName}\n[bold]Juror Name: [/]{jurorName}");
+        AnsiConsole.Write(panel);
+        AnsiConsole.WriteLine();
+    }
+
+    public sealed class Settings : BaseSettings
+    {
+        public Settings(string pollName, string jurorName) : base(pollName)
+        {
             JurorName = jurorName ?? throw new ArgumentNullException(nameof(jurorName));
         }
 
-        [CommandArgument(0, "<PollName>")] public string PollName { get; set; }
-
-        [CommandArgument(0, "<JurorName>")] public string JurorName { get; }
+        [CommandArgument(1, "<JurorName>")] public string JurorName { get; }
     }
 }

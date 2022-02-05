@@ -16,15 +16,15 @@ public static class SpectreAppBuilder
         {
             config.AddCommand<CreateCommand>("create")
                 .WithDescription("Creates a new poll.")
-                .WithExample(new[] { "create", "\"Example Poll\"", "C:\\Users\\example\\example_poll_data.csv" });
+                .WithExample(new[] { "create", "ExamplePoll", "C:\\Users\\example\\example_poll_data.csv" });
 
             config.AddCommand<VoteCommand>("vote")
                 .WithDescription("Registers a single juror's votes in a single poll.")
-                .WithExample(new[] { "vote", "\"Example Poll\"", "Matt" });
+                .WithExample(new[] { "vote", "ExamplePoll", "Matt" });
 
             config.AddCommand<ViewCommand>("view")
                 .WithDescription("Displays the results of a single poll.")
-                .WithExample(new[] { "view", "\"Example Poll\"" });
+                .WithExample(new[] { "view", "ExamplePoll" });
         });
 
         return app;
