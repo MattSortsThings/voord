@@ -4,7 +4,6 @@ public class DataGatewayServiceException : Exception
 {
     public DataGatewayServiceException()
     {
-        
     }
 
     public DataGatewayServiceException(string message) : base(message)

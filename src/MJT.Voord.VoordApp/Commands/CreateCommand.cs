@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using MJT.Voord.Data.DataGatewayService.Api;
 using MJT.Voord.Loading.LoadingService.Api;
 using MJT.Voord.VotingDomain.Types;
 using Spectre.Console;
@@ -8,10 +9,12 @@ namespace MJT.Voord.VoordApp.Commands;
 
 public sealed class CreateCommand : Command<CreateCommand.Settings>
 {
+    private readonly IDataGatewayService _dataGatewayService;
     private readonly IPollLoadingService _pollLoadingService;
 
-    public CreateCommand(IPollLoadingService pollLoadingService)
+    public CreateCommand(IDataGatewayService dataGatewayService, IPollLoadingService pollLoadingService)
     {
+        _dataGatewayService = dataGatewayService ?? throw new ArgumentNullException(nameof(dataGatewayService));
         _pollLoadingService = pollLoadingService ?? throw new ArgumentNullException(nameof(pollLoadingService));
     }
 
@@ -40,6 +43,7 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
 
     private void RunExecutionPath(string pollName, string srcFilePath)
     {
+        SetupAppData();
         Poll newPoll = LoadNewPoll(srcFilePath);
 
         foreach (Candidate candidate in newPoll.Candidates)
@@ -48,9 +52,16 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
         }
     }
 
+    private void SetupAppData()
+    {
+        if (_dataGatewayService.AppDataExists) return;
+        _dataGatewayService.WipeAllAppData();
+        _dataGatewayService.LoadSeedData();
+    }
+
     private Poll LoadNewPoll(string srcFilePath)
     {
-        return _pollLoadingService.LoadFromCsv(srcFilePath);
+        return _pollLoadingService.LoadNewPollFromCsv(srcFilePath);
     }
 
     private static void RenderSessionHeader(string pollName, string srcFilePath)

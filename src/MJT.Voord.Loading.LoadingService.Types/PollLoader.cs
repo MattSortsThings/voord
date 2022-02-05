@@ -1,26 +1,26 @@
 ﻿using System.Globalization;
 using System.IO.Abstractions;
+using System.Text.Json;
 using CsvHelper;
 using MJT.Voord.Loading.LoadingService.Api;
 using MJT.Voord.VotingDomain.Types;
 
 namespace MJT.Voord.Loading.LoadingService.Types;
 
-public class CsvPollLoader : IPollLoadingService
+public class PollLoader : IPollLoadingService
 {
-    private const string DefaultPollLoadingServiceExceptionMessage =
-        "Something went wrong while trying to load a poll from CSV.";
+    private const string LoadingFromCsvFailMessage = "Something went wrong while trying to load a poll from CSV.";
     private readonly List<Candidate> _candidates;
     private readonly IFileSystem _fileSystem;
     private int _counter;
 
-    public CsvPollLoader(IFileSystem fileSystem)
+    public PollLoader(IFileSystem fileSystem)
     {
         _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
         _candidates = new List<Candidate>(20);
     }
 
-    public Poll LoadFromCsv(string srcFilePath)
+    public Poll LoadNewPollFromCsv(string srcFilePath)
     {
         _ = srcFilePath ?? throw new ArgumentNullException(nameof(srcFilePath));
 
@@ -30,9 +30,10 @@ public class CsvPollLoader : IPollLoadingService
         }
         catch (Exception e)
         {
-            throw new PollLoadingServiceException(DefaultPollLoadingServiceExceptionMessage, e);
+            throw new PollLoadingServiceException(LoadingFromCsvFailMessage, e);
         }
     }
+
 
     private Poll CreateNewPollFromCsvFileAt(string path)
     {

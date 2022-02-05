@@ -15,15 +15,15 @@ public static class ServicesConfigurator
         var services = new ServiceCollection();
 
         services.Configure<DataOptions>(options => configurationRoot.GetSection("Data").Bind(options));
-        
+
         services.AddSingleton<IFileSystem, FileSystem>();
-        
+
         services.AddSingleton<IPollLoadingServiceFactory, PollLoadingServiceFactory>();
         services.AddScoped(serviceProvider => serviceProvider.GetRequiredService<IPollLoadingServiceFactory>().CreateInstance());
 
         services.AddSingleton<IDataGatewayServiceFactory, DataGatewayServiceFactory>();
         services.AddScoped(serviceProvider => serviceProvider.GetRequiredService<IDataGatewayServiceFactory>().CreateInstance());
-        
+
         return services;
     }
 }

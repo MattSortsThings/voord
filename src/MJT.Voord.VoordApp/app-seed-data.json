@@ -1,0 +1,139 @@
+[
+  {
+    "PollName": "Eurovision Semi Final 1: Five Jurors",
+    "Poll": {
+      "Candidates": [
+        {
+          "Id": 1,
+          "Name": "Albania",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 1
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 2
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 3
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 1
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 1
+            }
+          ]
+        },
+        {
+          "Id": 2,
+          "Name": "Armenia",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 2
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 1
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 2
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 2
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 2
+            }
+          ]
+        },
+        {
+          "Id": 3,
+          "Name": "Austria",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 3
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 3
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 1
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 3
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 3
+            }
+          ]
+        },
+        {
+          "Id": 4,
+          "Name": "Bulgaria",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 4
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 4
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 4
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 4
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 4
+            }
+          ]
+        },
+        {
+          "Id": 5,
+          "Name": "Croatia",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 5
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 5
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 5
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 5
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 5
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

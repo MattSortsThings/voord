@@ -4,5 +4,5 @@ namespace MJT.Voord.Loading.LoadingService.Api;
 
 public interface IPollLoadingService
 {
-    Poll LoadFromCsv(string srcFilePath);
+    Poll LoadNewPollFromCsv(string srcFilePath);
 }

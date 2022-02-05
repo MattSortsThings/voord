@@ -18,10 +18,10 @@ public class CsvPollLoaderTests
             .WithTextFile(srcFilePath, srcFileLines)
             .Build();
 
-        var sut = new CsvPollLoader(fileSystem);
+        var sut = new PollLoader(fileSystem);
 
         // Act
-        Poll result = sut.LoadFromCsv(srcFilePath);
+        Poll result = sut.LoadNewPollFromCsv(srcFilePath);
 
         // Assert
         result.Candidates.Should().BeEquivalentTo(expected.Candidates);
