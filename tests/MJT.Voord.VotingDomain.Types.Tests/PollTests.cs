@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Text.Json;
-using Xunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Xunit;
 
 namespace MJT.Voord.VotingDomain.Types.Tests;
 
@@ -14,7 +14,7 @@ public class PollTests
         // Arrange
         const string jsonFilePath = "test-poll.json";
         string contents = File.ReadAllText(jsonFilePath);
-        
+
         // Act
         var result = JsonSerializer.Deserialize<Poll>(contents);
 

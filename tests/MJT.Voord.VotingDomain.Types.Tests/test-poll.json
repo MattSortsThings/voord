@@ -3,31 +3,58 @@
     {
       "Id": 1,
       "Name": "UK",
-      "Img" : "/images/uk.svg",
+      "Img": "/images/uk.svg",
       "Votes": [
-        {"JurorName":  "A", "Rank": 1},
-        {"JurorName":  "B", "Rank": 2},
-        {"JurorName":  "C", "Rank": 3}
+        {
+          "JurorName": "A",
+          "Rank": 1
+        },
+        {
+          "JurorName": "B",
+          "Rank": 2
+        },
+        {
+          "JurorName": "C",
+          "Rank": 3
+        }
       ]
     },
     {
       "Id": 2,
       "Name": "France",
-      "Img" : "/images/fr.svg",
+      "Img": "/images/fr.svg",
       "Votes": [
-        {"JurorName":  "A", "Rank": 2},
-        {"JurorName":  "B", "Rank": 3},
-        {"JurorName":  "C", "Rank": 1}
+        {
+          "JurorName": "A",
+          "Rank": 2
+        },
+        {
+          "JurorName": "B",
+          "Rank": 3
+        },
+        {
+          "JurorName": "C",
+          "Rank": 1
+        }
       ]
     },
     {
       "Id": 3,
       "Name": "Ireland",
-      "Img" : "/images/ie.svg",
+      "Img": "/images/ie.svg",
       "Votes": [
-        {"JurorName":  "A", "Rank": 3},
-        {"JurorName":  "B", "Rank": 1},
-        {"JurorName":  "C", "Rank": 2}
+        {
+          "JurorName": "A",
+          "Rank": 3
+        },
+        {
+          "JurorName": "B",
+          "Rank": 1
+        },
+        {
+          "JurorName": "C",
+          "Rank": 2
+        }
       ]
     }
   ]
