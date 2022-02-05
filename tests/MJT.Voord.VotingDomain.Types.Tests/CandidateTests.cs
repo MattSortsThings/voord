@@ -19,7 +19,6 @@ public class CandidateTests
         {
             result!.Id.Should().Be(expected.Id);
             result.Name.Should().Be(expected.Name);
-            result.Img.Should().Be(expected.Img);
             result.Votes.Should().BeEquivalentTo(expected.Votes);
         }
     }

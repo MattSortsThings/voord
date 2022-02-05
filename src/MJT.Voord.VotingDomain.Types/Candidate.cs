@@ -16,7 +16,5 @@ public class Candidate
 
     public string Name { get; }
 
-    public string? Img { get; init; }
-
     public IList<Vote> Votes { get; init; } = new List<Vote>();
 }

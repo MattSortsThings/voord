@@ -3,7 +3,6 @@
     {
       "Id": 1,
       "Name": "UK",
-      "Img": "/images/uk.svg",
       "Votes": [
         {
           "JurorName": "A",
@@ -22,7 +21,6 @@
     {
       "Id": 2,
       "Name": "France",
-      "Img": "/images/fr.svg",
       "Votes": [
         {
           "JurorName": "A",
@@ -41,7 +39,6 @@
     {
       "Id": 3,
       "Name": "Ireland",
-      "Img": "/images/ie.svg",
       "Votes": [
         {
           "JurorName": "A",

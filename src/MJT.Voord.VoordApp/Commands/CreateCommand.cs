@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using MJT.Voord.Loading.LoadingService.Api;
+using MJT.Voord.VotingDomain.Types;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -6,14 +8,63 @@ namespace MJT.Voord.VoordApp.Commands;
 
 public sealed class CreateCommand : Command<CreateCommand.Settings>
 {
+    private readonly IPollLoadingService _pollLoadingService;
+
+    public CreateCommand(IPollLoadingService pollLoadingService)
+    {
+        _pollLoadingService = pollLoadingService ?? throw new ArgumentNullException(nameof(pollLoadingService));
+    }
+
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
-        AnsiConsole.WriteLine("CreateCommand says hello world.");
+        RenderSessionHeader(settings.PollName, settings.SrcFilePath);
+        try
+        {
+            RunExecutionPath(settings.PollName, settings.SrcFilePath);
+        }
+        catch (PollLoadingServiceException e)
+        {
+            AnsiConsole.WriteException(e);
 
-        AnsiConsole.WriteLine("The poll name is: " + settings.PollName);
-        AnsiConsole.WriteLine("The source file path is: " + settings.SrcFilePath);
+            return (int)ExitCodes.LoadingError;
+        }
+        catch (Exception e)
+        {
+            AnsiConsole.WriteException(e);
 
-        return 0;
+            return (int)ExitCodes.OtherError;
+        }
+
+        return (int)ExitCodes.Success;
+    }
+
+    private void RunExecutionPath(string pollName, string srcFilePath)
+    {
+        Poll newPoll = LoadNewPoll(srcFilePath);
+
+        foreach (Candidate candidate in newPoll.Candidates)
+        {
+            AnsiConsole.WriteLine(candidate.Id + " " + candidate.Name);
+        }
+    }
+
+    private Poll LoadNewPoll(string srcFilePath)
+    {
+        return _pollLoadingService.LoadFromCsv(srcFilePath);
+    }
+
+    private static void RenderSessionHeader(string pollName, string srcFilePath)
+    {
+        var rule = new Rule("[cornflowerblue]Voord - Developed by Matt Tantony - February 2022[/]")
+        {
+            Alignment = Justify.Left
+        };
+        AnsiConsole.Write(rule);
+
+        AnsiConsole.WriteLine();
+        var panel = new Panel($"[bold]Poll Name: [/]{pollName}\n[bold]Source: [/]{srcFilePath}");
+        AnsiConsole.Write(panel);
+        AnsiConsole.WriteLine();
     }
 
     public sealed class Settings : CommandSettings
