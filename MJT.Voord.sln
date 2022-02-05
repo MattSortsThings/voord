@@ -11,6 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VoordApp", "VoordApp", "{B1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MJT.Voord.VoordApp", "src\MJT.Voord.VoordApp\MJT.Voord.VoordApp.csproj", "{4455C256-0D3A-4CFC-8D27-2212254FB023}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VotingDomain", "VotingDomain", "{FFB1F4B4-8E7A-4A6D-AD5E-18BF92B9651E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MJT.Voord.VotingDomain.Types", "src\MJT.Voord.VotingDomain.Types\MJT.Voord.VotingDomain.Types.csproj", "{563BACE2-4174-4176-8253-EACD9B95B195}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VotingDomain", "VotingDomain", "{1670B8FC-0374-41CD-9A8B-022A7F6C68FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MJT.Voord.VotingDomain.Types.Tests", "tests\MJT.Voord.VotingDomain.Types.Tests\MJT.Voord.VotingDomain.Types.Tests.csproj", "{982EAE51-25D1-479E-93E6-3821DC5D375E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +29,14 @@ Global
 		{4455C256-0D3A-4CFC-8D27-2212254FB023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4455C256-0D3A-4CFC-8D27-2212254FB023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4455C256-0D3A-4CFC-8D27-2212254FB023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563BACE2-4174-4176-8253-EACD9B95B195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563BACE2-4174-4176-8253-EACD9B95B195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563BACE2-4174-4176-8253-EACD9B95B195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563BACE2-4174-4176-8253-EACD9B95B195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982EAE51-25D1-479E-93E6-3821DC5D375E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982EAE51-25D1-479E-93E6-3821DC5D375E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982EAE51-25D1-479E-93E6-3821DC5D375E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982EAE51-25D1-479E-93E6-3821DC5D375E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -28,6 +44,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B163C7C1-BBBD-405C-9770-133A80F34E1B} = {15A76BAF-7EBA-46E8-B811-0ADA5277F153}
 		{4455C256-0D3A-4CFC-8D27-2212254FB023} = {B163C7C1-BBBD-405C-9770-133A80F34E1B}
+		{FFB1F4B4-8E7A-4A6D-AD5E-18BF92B9651E} = {15A76BAF-7EBA-46E8-B811-0ADA5277F153}
+		{563BACE2-4174-4176-8253-EACD9B95B195} = {FFB1F4B4-8E7A-4A6D-AD5E-18BF92B9651E}
+		{1670B8FC-0374-41CD-9A8B-022A7F6C68FC} = {0B5B94ED-C61B-4232-BB04-C1EEB522BFD4}
+		{982EAE51-25D1-479E-93E6-3821DC5D375E} = {1670B8FC-0374-41CD-9A8B-022A7F6C68FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B530B3E-45D5-40B6-9FE3-8A721BA4B0D2}
