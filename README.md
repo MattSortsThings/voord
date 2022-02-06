@@ -11,8 +11,8 @@ A Voord is also this faintly sinister *Doctor Who* monster from the 1960s:
 ![A voord alien](images/voord2.jpg)
 
 ## Table of Contents
-* [The Scoring Algorithm](#the-scoring-algorithm)
 * [Screenshots](#screenshots)
+* [The Scoring Algorithm](#the-scoring-algorithm)
 * [Technologies](#technologies)
 * [How to Use](#how-to-use)
   * [Create a Poll](#create-a-poll)
@@ -83,26 +83,26 @@ Navigate to the build directory then run the `MJT.Voord.VoordApp.exe` executable
 
 ### Create a Poll
 
-You will need a .csv file with the poll candidate names in a single column, with the header "Names".
+You will need a .csv file with the poll candidate names in a single column, with the header "Names". See the example file in the `examples` directory.
 
 Run the app with the `create` arg followed by the name of the new poll and the path to the .csv file, e.g.:
 
-  $ MJT.Voord.VoordApp.exe create staff-outing example-poll-staff-outing.csv
+    $ MJT.Voord.VoordApp.exe create staff-outing example-staff-outing.csv
 
 ### Get the Names of All Available Polls
 
 Run the app with the `names` arg to see the names of all polls available to vote on.
 
-  $ MJT.Voord.VoordApp.exe names
+    $ MJT.Voord.VoordApp.exe names
 
 ### Vote in a Poll
 
 Run the app with the `vote` arg followed by the name of the existing poll and the juror's name.
 
-  $ MJT.Voord.VoordApp.exe staff-outing Matt
+    $ MJT.Voord.VoordApp.exe staff-outing Matt
 
 ### View Poll Results
 
 Polls are always 'open' and jurors can add more votes at any time. To view the current results of a poll, run the app with the `view` arg followed by the name of the poll.
 
-  $ MJT.Voord.VoordApp.exe staff-outing
+    $ MJT.Voord.VoordApp.exe staff-outing
