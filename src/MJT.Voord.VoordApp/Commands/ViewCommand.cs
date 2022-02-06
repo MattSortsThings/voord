@@ -3,7 +3,6 @@ using System.Text;
 using MJT.Voord.Data.DataGatewayService.Api;
 using MJT.Voord.Results.Models;
 using MJT.Voord.Results.ResultsService.Api;
-using MJT.Voord.VoordApp.Options;
 using MJT.Voord.VotingDomain.Types;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -82,7 +81,7 @@ public class ViewCommand : Command<ViewCommand.Settings>
         table.Border(TableBorder.Rounded);
 
         table.Columns[1].RightAligned();
-        
+
         AnsiConsole.Write(table);
     }
 
@@ -94,19 +93,19 @@ public class ViewCommand : Command<ViewCommand.Settings>
         barChart.AddItem(n1, tp1, Color.Gold1);
 
         var counter = 1;
-        
+
         if (results.Count > 3)
         {
             (string n2, int tp2, _) = results[1];
             barChart.AddItem(n2, tp2, Color.LightSlateBlue);
-            
+
             (string n3, int tp3, _) = results[2];
             barChart.AddItem(n3, tp3, Color.RosyBrown);
 
             counter = 3;
         }
 
-        for (; counter < results.Count-1; counter++)
+        for (; counter < results.Count - 1; counter++)
         {
             barChart.AddItem(results[counter].Name, results[counter].TotalPoints, Color.White);
         }

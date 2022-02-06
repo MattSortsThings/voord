@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using MJT.Voord.Data.DataGatewayService.Api;
-using MJT.Voord.Results.ResultsService.Types;
 using MJT.Voord.VotingDomain.Types;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -60,7 +59,7 @@ public class VoteCommand : Command<VoteCommand.Settings>
         _dataGatewayService.WipeAllAppData();
         _dataGatewayService.LoadSeedData();
     }
-    
+
     private Poll LoadPoll(string pollName)
     {
         return _dataGatewayService.LoadPoll(pollName);

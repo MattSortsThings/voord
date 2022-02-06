@@ -1,5 +1,4 @@
-﻿using System.Collections.Immutable;
-using MJT.Voord.Results.Models;
+﻿using MJT.Voord.Results.Models;
 using MJT.Voord.Results.ResultsService.Api;
 using MJT.Voord.VotingDomain.Types;
 
@@ -37,6 +36,7 @@ public class LogarithmicPollCalculator : IPollResultsService
         List<Result> results = p.Candidates.Select(c => ComputeIndividualResult(c, logFunction)).ToList();
 
         results.Sort(_comparer);
+
         return results;
     }
 
