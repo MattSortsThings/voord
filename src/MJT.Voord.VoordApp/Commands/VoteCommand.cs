@@ -18,6 +18,7 @@ public class VoteCommand : Command<VoteCommand.Settings>
         _pollVotingService = pollVotingService;
     }
 
+    [SuppressMessage("ReSharper", "RedundantNullableFlowAttribute")]
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
         RenderSessionHeader(settings.PollName, settings.JurorName);
@@ -66,10 +67,16 @@ public class VoteCommand : Command<VoteCommand.Settings>
         AnsiConsole.Write("Finished!\n\n");
 
         bool shouldCommit = PromptForCommit();
-        if (shouldCommit) _dataGatewayService.Persist(pollName, activePoll);
+        if (shouldCommit) PersistChanges(pollName, activePoll);
     }
 
-    private bool PromptForCommit()
+    private void PersistChanges(string pollName, Poll activePoll)
+    {
+        _dataGatewayService.Persist(pollName, activePoll);
+        AnsiConsole.WriteLine("Changes committed.");
+    }
+
+    private static bool PromptForCommit()
     {
         AnsiConsole.WriteLine();
         string shouldCommit = AnsiConsole.Prompt(
@@ -125,7 +132,7 @@ public class VoteCommand : Command<VoteCommand.Settings>
         AnsiConsole.Write(rule);
 
         AnsiConsole.WriteLine();
-        var panel = new Panel($"[bold]Poll Name: [/]{pollName}\n[bold]Juror Name: [/]{jurorName}");
+        var panel = new Panel($"[bold]Voting in Poll[/]\n[bold]Poll Name: [/]{pollName}\n[bold]Juror Name: [/]{jurorName}");
         AnsiConsole.Write(panel);
         AnsiConsole.WriteLine();
     }

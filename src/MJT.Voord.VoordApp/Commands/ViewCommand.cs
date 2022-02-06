@@ -20,6 +20,7 @@ public class ViewCommand : Command<ViewCommand.Settings>
         _pollResultsService = pollResultsService ?? throw new ArgumentNullException(nameof(pollResultsService));
     }
 
+    [SuppressMessage("ReSharper", "RedundantNullableFlowAttribute")]
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
         RenderSessionHeader(settings.PollName);
@@ -136,7 +137,7 @@ public class ViewCommand : Command<ViewCommand.Settings>
         AnsiConsole.Write(rule);
 
         AnsiConsole.WriteLine();
-        var panel = new Panel($"[bold]Poll Name: [/]{pollName}");
+        var panel = new Panel($"[bold]Viewing Poll Results[/]\n[bold]Poll Name: [/]{pollName}");
         AnsiConsole.Write(panel);
         AnsiConsole.WriteLine();
     }

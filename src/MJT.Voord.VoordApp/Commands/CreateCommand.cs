@@ -18,9 +18,10 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
         _pollLoadingService = pollLoadingService ?? throw new ArgumentNullException(nameof(pollLoadingService));
     }
 
+    [SuppressMessage("ReSharper", "RedundantNullableFlowAttribute")]
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
-        RenderSessionHeader(settings.PollName, settings.SrcFilePath);
+        RenderSessionHeader(settings.SrcFilePath);
 
         ValidationResult x = settings.Validate();
         if (!x.Successful)
@@ -60,8 +61,51 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
     {
         SetupAppData();
         Poll newPoll = LoadNewPoll(srcFilePath);
+        RenderPoll(pollName, newPoll);
 
+        if (PromptForCommit()) PersistNewPoll(pollName, newPoll);
+    }
+
+    private void PersistNewPoll(string pollName, Poll newPoll)
+    {
         _dataGatewayService.Persist(pollName, newPoll);
+        AnsiConsole.WriteLine("Changes committed.");
+    }
+
+    private static bool PromptForCommit()
+    {
+        AnsiConsole.WriteLine();
+        string shouldCommit = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Commit your new poll?")
+                .AddChoices("Yes", "No")
+        );
+
+        return shouldCommit == "Yes";
+    }
+
+    private static void RenderPoll(string pollName, Poll poll)
+    {
+        Tree tree = GenerateTree(pollName, poll);
+
+        AnsiConsole.WriteLine();
+        AnsiConsole.Write(tree);
+        AnsiConsole.WriteLine();
+    }
+
+    private static Tree GenerateTree(string pollName, Poll poll)
+    {
+        string treeTitle = "[bold]Poll Name: [/]" + pollName;
+        string candidatesCount = $"{poll.Candidates.Count} candidates:";
+        Tree tree = new Tree(treeTitle).Style("bold yellow");
+        var node = new TreeNode(new Markup(candidatesCount));
+        tree.AddNode(node);
+        foreach (Candidate c in poll.Candidates)
+        {
+            node.AddNode(c.Name);
+        }
+
+        return tree;
     }
 
     private void SetupAppData()
@@ -76,7 +120,7 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
         return _pollLoadingService.LoadNewPollFromCsv(srcFilePath);
     }
 
-    private static void RenderSessionHeader(string pollName, string srcFilePath)
+    private static void RenderSessionHeader(string srcFilePath)
     {
         var rule = new Rule("[cornflowerblue]Voord - Developed by Matt Tantony - February 2022[/]")
         {
@@ -85,7 +129,7 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
         AnsiConsole.Write(rule);
 
         AnsiConsole.WriteLine();
-        var panel = new Panel($"[bold]Poll Name: [/]{pollName}\n[bold]Source: [/]{srcFilePath}");
+        var panel = new Panel($"[bold]Creating a Poll[/]\n[bold]Source: [/]{srcFilePath}");
         AnsiConsole.Write(panel);
         AnsiConsole.WriteLine();
     }

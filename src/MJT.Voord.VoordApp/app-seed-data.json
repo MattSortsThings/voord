@@ -13,19 +13,19 @@
             },
             {
               "JurorName": "B",
-              "Ranking": 2
+              "Ranking": 14
             },
             {
               "JurorName": "C",
-              "Ranking": 3
+              "Ranking": 8
             },
             {
               "JurorName": "D",
-              "Ranking": 1
+              "Ranking": 16
             },
             {
               "JurorName": "E",
-              "Ranking": 1
+              "Ranking": 17
             }
           ]
         },
@@ -35,23 +35,23 @@
           "Votes": [
             {
               "JurorName": "A",
-              "Ranking": 2
+              "Ranking": 18
             },
             {
               "JurorName": "B",
-              "Ranking": 1
+              "Ranking": 15
             },
             {
               "JurorName": "C",
-              "Ranking": 2
+              "Ranking": 12
             },
             {
               "JurorName": "D",
-              "Ranking": 2
+              "Ranking": 17
             },
             {
               "JurorName": "E",
-              "Ranking": 2
+              "Ranking": 16
             }
           ]
         },
@@ -61,23 +61,23 @@
           "Votes": [
             {
               "JurorName": "A",
-              "Ranking": 3
+              "Ranking": 2
             },
             {
               "JurorName": "B",
-              "Ranking": 3
+              "Ranking": 2
             },
             {
               "JurorName": "C",
-              "Ranking": 1
+              "Ranking": 9
             },
             {
               "JurorName": "D",
-              "Ranking": 3
+              "Ranking": 15
             },
             {
               "JurorName": "E",
-              "Ranking": 3
+              "Ranking": 15
             }
           ]
         },
@@ -87,23 +87,23 @@
           "Votes": [
             {
               "JurorName": "A",
-              "Ranking": 4
+              "Ranking": 3
             },
             {
               "JurorName": "B",
-              "Ranking": 4
+              "Ranking": 1
             },
             {
               "JurorName": "C",
-              "Ranking": 4
+              "Ranking": 10
             },
             {
               "JurorName": "D",
-              "Ranking": 4
+              "Ranking": 14
             },
             {
               "JurorName": "E",
-              "Ranking": 4
+              "Ranking": 14
             }
           ]
         },
@@ -113,7 +113,85 @@
           "Votes": [
             {
               "JurorName": "A",
-              "Ranking": 5
+              "Ranking": 16
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 3
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 12
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 13
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 13
+            }
+          ]
+        },
+        {
+          "Id": 6,
+          "Name": "Denmark",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 17
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 4
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 14
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 12
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 18
+            }
+          ]
+        },
+        {
+          "Id": 7,
+          "Name": "Greece",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 15
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 16
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 13
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 11
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 12
+            }
+          ]
+        },
+        {
+          "Id": 8,
+          "Name": "Iceland",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 4
             },
             {
               "JurorName": "B",
@@ -121,7 +199,137 @@
             },
             {
               "JurorName": "C",
+              "Ranking": 1
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 10
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 11
+            }
+          ]
+        },
+        {
+          "Id": 9,
+          "Name": "Latvia",
+          "Votes": [
+            {
+              "JurorName": "A",
               "Ranking": 5
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 6
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 15
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 9
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 9
+            }
+          ]
+        },
+        {
+          "Id": 10,
+          "Name": "Lithuania",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 14
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 7
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 16
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 8
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 8
+            }
+          ]
+        },
+        {
+          "Id": 11,
+          "Name": "Moldova",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 13
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 17
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 2
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 7
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 10
+            }
+          ]
+        },
+        {
+          "Id": 12,
+          "Name": "Netherlands",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 12
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 18
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 17
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 6
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 7
+            }
+          ]
+        },
+        {
+          "Id": 13,
+          "Name": "Norway",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 6
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 8
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 3
             },
             {
               "JurorName": "D",
@@ -129,7 +337,137 @@
             },
             {
               "JurorName": "E",
+              "Ranking": 6
+            }
+          ]
+        },
+        {
+          "Id": 14,
+          "Name": "Portugal",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 7
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 9
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 4
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 4
+            },
+            {
+              "JurorName": "E",
               "Ranking": 5
+            }
+          ]
+        },
+        {
+          "Id": 15,
+          "Name": "Russia",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 8
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 10
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 5
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 3
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 4
+            }
+          ]
+        },
+        {
+          "Id": 16,
+          "Name": "Slovenia",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 11
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 11
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 18
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 18
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 3
+            }
+          ]
+        },
+        {
+          "Id": 17,
+          "Name": "Switzerland",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 9
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 12
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 6
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 1
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 2
+            }
+          ]
+        },
+        {
+          "Id": 18,
+          "Name": "Ukraine",
+          "Votes": [
+            {
+              "JurorName": "A",
+              "Ranking": 10
+            },
+            {
+              "JurorName": "B",
+              "Ranking": 13
+            },
+            {
+              "JurorName": "C",
+              "Ranking": 7
+            },
+            {
+              "JurorName": "D",
+              "Ranking": 2
+            },
+            {
+              "JurorName": "E",
+              "Ranking": 1
             }
           ]
         }
