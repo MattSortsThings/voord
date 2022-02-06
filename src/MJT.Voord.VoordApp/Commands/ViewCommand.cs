@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using MJT.Voord.Data.DataGatewayService.Api;
+using MJT.Voord.Results.Models;
+using MJT.Voord.Results.ResultsService.Api;
 using MJT.Voord.VotingDomain.Types;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -9,10 +11,12 @@ namespace MJT.Voord.VoordApp.Commands;
 public class ViewCommand : Command<ViewCommand.Settings>
 {
     private readonly IDataGatewayService _dataGatewayService;
+    private readonly IPollResultsService _pollResultsService;
 
-    public ViewCommand(IDataGatewayService dataGatewayService)
+    public ViewCommand(IDataGatewayService dataGatewayService, IPollResultsService pollResultsService)
     {
         _dataGatewayService = dataGatewayService ?? throw new ArgumentNullException(nameof(dataGatewayService));
+        _pollResultsService = pollResultsService ?? throw new ArgumentNullException(nameof(pollResultsService));
     }
 
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
@@ -52,12 +56,21 @@ public class ViewCommand : Command<ViewCommand.Settings>
     {
         SetupAppData();
         Poll activePoll = LoadPoll(pollName);
-        AnsiConsole.Write(activePoll.ToString());
+        IReadOnlyList<Result> results = ComputeResults(activePoll);
+        foreach (var r in results)
+        {
+            AnsiConsole.Write("1");
+        }
     }
 
     private Poll LoadPoll(string pollName)
     {
         return _dataGatewayService.LoadPoll(pollName);
+    }
+
+    private IReadOnlyList<Result> ComputeResults(Poll poll)
+    {
+        return _pollResultsService.ComputeResults(poll);
     }
 
     private static void RenderSessionHeader(string pollName)

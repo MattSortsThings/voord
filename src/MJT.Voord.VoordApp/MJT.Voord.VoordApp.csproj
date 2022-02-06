@@ -32,6 +32,9 @@
         <ProjectReference Include="..\MJT.Voord.Data.DataGatewayService.Types\MJT.Voord.Data.DataGatewayService.Types.csproj"/>
         <ProjectReference Include="..\MJT.Voord.Loading.LoadingService.Api\MJT.Voord.Loading.LoadingService.Api.csproj"/>
         <ProjectReference Include="..\MJT.Voord.Loading.LoadingService.Types\MJT.Voord.Loading.LoadingService.Types.csproj"/>
+        <ProjectReference Include="..\MJT.Voord.Results.Models\MJT.Voord.Results.Models.csproj"/>
+        <ProjectReference Include="..\MJT.Voord.Results.ResultsService.Api\MJT.Voord.Results.ResultsService.Api.csproj"/>
+        <ProjectReference Include="..\MJT.Voord.Results.ResultsService.Types\MJT.Voord.Results.ResultsService.Types.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MJT.Voord.Data.DataGatewayService.Api;
 using MJT.Voord.Loading.LoadingService.Api;
+using MJT.Voord.Results.ResultsService.Api;
 using MJT.Voord.VoordApp.Options;
 using MJT.Voord.VoordApp.ServiceFactories;
 
@@ -15,6 +16,7 @@ public static class ServicesConfigurator
         var services = new ServiceCollection();
 
         services.Configure<DataOptions>(options => configurationRoot.GetSection("Data").Bind(options));
+        services.Configure<ResultsOptions>(options => configurationRoot.GetSection("Results").Bind(options));
 
         services.AddSingleton<IFileSystem, FileSystem>();
 
@@ -23,6 +25,9 @@ public static class ServicesConfigurator
 
         services.AddSingleton<IDataGatewayServiceFactory, DataGatewayServiceFactory>();
         services.AddScoped(serviceProvider => serviceProvider.GetRequiredService<IDataGatewayServiceFactory>().CreateInstance());
+
+        services.AddSingleton<IPollResultsServiceFactory, PollResultsServiceFactory>();
+        services.AddScoped(serviceProvider => serviceProvider.GetRequiredService<IPollResultsServiceFactory>().CreateInstance());
 
         return services;
     }

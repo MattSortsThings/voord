@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MJT.Voord.Results.Models\MJT.Voord.Results.Models.csproj"/>
+        <ProjectReference Include="..\MJT.Voord.VotingDomain.Types\MJT.Voord.VotingDomain.Types.csproj"/>
+    </ItemGroup>
+
+</Project>
