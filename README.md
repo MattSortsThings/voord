@@ -11,12 +11,32 @@ A Voord is also this faintly sinister *Doctor Who* monster from the 1960s:
 ![A voord alien](images/voord2.jpg)
 
 ## Table of Contents
+* [The Scoring Algorithm](#the-scoring-algorithm)
+* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [How to Use](#how-to-use)
   * [Create a Poll](#create-a-poll)
   * [Get the Names of All Available Polls](#get-the-names-of-all-available-polls)
   * [Vote in a Poll](#vote-in-a-poll)
   * [View Poll Results](#view-poll-results)
+
+## Screenshots
+
+| Creating a poll from a CSV file |
+|:--------------------------------------------:|
+![Creating a poll from a CSV file](/images/create.jpg)
+
+| Voting in a poll |
+|:--------------------------------------------:|
+![Voting in a poll](/images/vote.jpg)
+
+| Viewing the results of a poll |
+|:--------------------------------------------:|
+![Viewing the results of a poll](/images/view.jpg)
+
+| Viewing the names of all the available polls |
+|:--------------------------------------------:|
+![Viewing the names of all the available polls ](/images/names.jpg)
 
 ## The Scoring Algorithm
 As mentioned above, a juror votes in a poll by ranking all the candidates in preferential order from worst to best. Their preferences are converted into points using a simple log function:
@@ -29,7 +49,9 @@ For example, in a poll with 6 candidates, the juror's rankings are converted int
 
 ![Graph of example juror's rankings and points](images/ExampleJurorScoringFunction.jpg)
 
-This means that the first placed (i.e. 1st) candidate gets 100 points, the last placed (i,e. 6th) candidate gets 0 points, and the intermediate candidates are assigned points across a logarithmic distribution.
+This means that the first placed (i.e. 1st) candidate gets 100 points, the last placed (i.e. 6th) candidate gets 0 points, and the intermediate candidates are assigned points across a logarithmic distribution.
+
+To determine the results of the poll, each candidate's juror rankings are converted into points using the log function, then totalled. The candidate with the most points wins the poll!
 
 ## Technologies
 
