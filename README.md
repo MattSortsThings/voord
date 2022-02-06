@@ -8,7 +8,7 @@ It's a .NET 6 console app that lets people create and vote on multiple-choice po
 
 A Voord is also this faintly sinister *Doctor Who* monster from the 1960s:
 
-![A voord alien](images/voord2.jpg)
+![A voord alien](images/voord-hero-image.jpg)
 
 ## Table of Contents
 * [Screenshots](#screenshots)
