@@ -35,6 +35,8 @@
         <ProjectReference Include="..\MJT.Voord.Results.Models\MJT.Voord.Results.Models.csproj"/>
         <ProjectReference Include="..\MJT.Voord.Results.ResultsService.Api\MJT.Voord.Results.ResultsService.Api.csproj"/>
         <ProjectReference Include="..\MJT.Voord.Results.ResultsService.Types\MJT.Voord.Results.ResultsService.Types.csproj"/>
+        <ProjectReference Include="..\MJT.Voord.Voting.VotingService.Api\MJT.Voord.Voting.VotingService.Api.csproj"/>
+        <ProjectReference Include="..\MJT.Voord.Voting.VotingService.Types\MJT.Voord.Voting.VotingService.Types.csproj"/>
     </ItemGroup>
 
 </Project>

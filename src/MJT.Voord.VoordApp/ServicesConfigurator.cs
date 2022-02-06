@@ -6,6 +6,7 @@ using MJT.Voord.Loading.LoadingService.Api;
 using MJT.Voord.Results.ResultsService.Api;
 using MJT.Voord.VoordApp.Options;
 using MJT.Voord.VoordApp.ServiceFactories;
+using MJT.Voord.Voting.VotingService.Api;
 
 namespace MJT.Voord.VoordApp;
 
@@ -28,6 +29,9 @@ public static class ServicesConfigurator
 
         services.AddSingleton<IPollResultsServiceFactory, PollResultsServiceFactory>();
         services.AddScoped(serviceProvider => serviceProvider.GetRequiredService<IPollResultsServiceFactory>().CreateInstance());
+
+        services.AddSingleton<IPollVotingServiceFactory, PollVotingServiceFactory>();
+        services.AddScoped(serviceProvider => serviceProvider.GetRequiredService<IPollVotingServiceFactory>().CreateInstance());
 
         return services;
     }
