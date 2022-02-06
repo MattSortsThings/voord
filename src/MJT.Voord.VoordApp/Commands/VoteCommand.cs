@@ -97,6 +97,7 @@ public class VoteCommand : Command<VoteCommand.Settings>
         string selectedCandidate = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title(promptTitle)
+                .PageSize(20)
                 .AddChoices(_pollVotingService.RemainingCandidateNames)
         );
 

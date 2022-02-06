@@ -1,8 +1,10 @@
 # Voord - Hackaway v5
 
-**Voord** is an ordered voting app created by Matt Tantony at the Royal Hackaway, 5-6 February 2022.
+**Voord** is an app for preferential order-based voting created by Matt Tantony at the Royal Hackaway, 5-6 February 2022.
 
 It's a .NET 6 console app that lets people create and vote on multiple-choice polls. You cast your vote by putting all the candidates in preferential order (from worst to best). The app uses a log function to convert the jurors' preferences into points and determine the poll winner. This app was inspired by the voting method used by the international juries in the Eurovision Song Contest.
+
+**VO**ting + **ORD**er = **VOORD**.
 
 A Voord is also this faintly sinister *Doctor Who* monster from the 1960s:
 
@@ -23,11 +25,11 @@ In a poll of _n_ candidates, if a juror awards candidate _c_ a rank of _r_, the 
 
 y = 100 - (100 * (Log (base n) r)
 
-For example, in a poll with 6 candidates, the juror's rankings are converted into points as shown on the graph below. 
+For example, in a poll with 6 candidates, the juror's rankings are converted into points as shown on the graph below.
 
 ![Graph of example juror's rankings and points](images/ExampleJurorScoringFunction.jpg)
 
-This means that the first placed (i.e. 1st) candidate gets 100 points, the last placed (i,e. 6th) candidate gets 0 points, and the intermediate candidates are assigned points across a logarithmic distribution. 
+This means that the first placed (i.e. 1st) candidate gets 100 points, the last placed (i,e. 6th) candidate gets 0 points, and the intermediate candidates are assigned points across a logarithmic distribution.
 
 ## Technologies
 
@@ -50,16 +52,16 @@ Clone the repo and navigate into it
 
     $ git clone https://github.com/MattSortsThings/voord
     $ cd voord
-    
+
 Build the Voord App project to a directory of your choice using the .NET CLI. For example:
 
     $ dotnet build src/MJT.Voord.VoordApp -o C:\Users\example\voordDirectory
-    
+
 Navigate to the build directory then run the `MJT.Voord.VoordApp.exe` executable, with additional arguments as shown below:
 
 ### Create a Poll
 
-You will need a .csv file with the poll candidate names in a single column, with the header "Names". 
+You will need a .csv file with the poll candidate names in a single column, with the header "Names".
 
 Run the app with the `create` arg followed by the name of the new poll and the path to the .csv file, e.g.:
 
@@ -70,16 +72,15 @@ Run the app with the `create` arg followed by the name of the new poll and the p
 Run the app with the `names` arg to see the names of all polls available to vote on.
 
   $ MJT.Voord.VoordApp.exe names
-  
+
 ### Vote in a Poll
 
 Run the app with the `vote` arg followed by the name of the existing poll and the juror's name.
 
   $ MJT.Voord.VoordApp.exe staff-outing Matt
-  
+
 ### View Poll Results
 
 Polls are always 'open' and jurors can add more votes at any time. To view the current results of a poll, run the app with the `view` arg followed by the name of the poll.
 
   $ MJT.Voord.VoordApp.exe staff-outing
-  
