@@ -26,9 +26,38 @@ public class VoteCommand : Command<VoteCommand.Settings>
             return (int)ExitCodes.InvalidCommandArgsError;
         }
 
-        return 0;
+        try
+        {
+            RunExecutionPath(settings.PollName, settings.JurorName);
+
+            return (int)ExitCodes.Success;
+        }
+        catch (DataGatewayServiceException e)
+        {
+            AnsiConsole.WriteException(e);
+
+            return (int)ExitCodes.DataGatewayError;
+        }
+        catch (Exception e)
+        {
+            AnsiConsole.WriteException(e);
+
+            return (int)ExitCodes.OtherError;
+        }
     }
-    
+
+    private void RunExecutionPath(string pollName, string jurorName)
+    {
+        SetupAppData();
+    }
+
+    private void SetupAppData()
+    {
+        if (_dataGatewayService.AppDataExists) return;
+        _dataGatewayService.WipeAllAppData();
+        _dataGatewayService.LoadSeedData();
+    }
+
     private static void RenderSessionHeader(string pollName, string jurorName)
     {
         var rule = new Rule("[cornflowerblue]Voord - Developed by Matt Tantony - February 2022[/]")

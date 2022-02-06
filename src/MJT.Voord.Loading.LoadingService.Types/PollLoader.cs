@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.IO.Abstractions;
-using System.Text.Json;
 using CsvHelper;
 using MJT.Voord.Loading.LoadingService.Api;
 using MJT.Voord.VotingDomain.Types;

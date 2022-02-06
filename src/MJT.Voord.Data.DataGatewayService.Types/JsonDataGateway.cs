@@ -41,19 +41,6 @@ public class JsonDataGateway : IDataGatewayService
         }
     }
 
-    private void OverwriteAllAppData(Persistence data)
-    {
-        _fileSystem.File.WriteAllText(_appDataFilePath, JsonSerializer.Serialize(data));
-    }
-
-    private IList<PollPersistenceModel> DeserializeSeedData()
-    {
-        string text = _fileSystem.File.ReadAllText(_seedDataFilePath); 
-        var models = JsonSerializer.Deserialize<IList<PollPersistenceModel>>(text);
-
-        return models ?? throw new InvalidOperationException("Json deserialization failed.");
-    }
-
     public void Persist(string pollName, Poll poll)
     {
         Persistence data = LoadAllAppData();
@@ -66,10 +53,7 @@ public class JsonDataGateway : IDataGatewayService
             overwritten = true;
         }
 
-        if (!overwritten)
-        {
-            data.Polls.Add(new PollPersistenceModel(pollName, poll));
-        }
+        if (!overwritten) data.Polls.Add(new PollPersistenceModel(pollName, poll));
 
         SaveAllAppData(data);
     }
@@ -86,6 +70,19 @@ public class JsonDataGateway : IDataGatewayService
         {
             throw new DataGatewayServiceException("Something went wrong with the data gateway.", e);
         }
+    }
+
+    private void OverwriteAllAppData(Persistence data)
+    {
+        _fileSystem.File.WriteAllText(_appDataFilePath, JsonSerializer.Serialize(data));
+    }
+
+    private IList<PollPersistenceModel> DeserializeSeedData()
+    {
+        string text = _fileSystem.File.ReadAllText(_seedDataFilePath);
+        var models = JsonSerializer.Deserialize<IList<PollPersistenceModel>>(text);
+
+        return models ?? throw new InvalidOperationException("Json deserialization failed.");
     }
 
     private Poll SelectByPollName(string pollName)

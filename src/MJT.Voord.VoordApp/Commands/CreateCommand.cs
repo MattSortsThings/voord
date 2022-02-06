@@ -21,7 +21,7 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
         RenderSessionHeader(settings.PollName, settings.SrcFilePath);
-        
+
         ValidationResult x = settings.Validate();
         if (!x.Successful)
         {
@@ -33,6 +33,14 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
         try
         {
             RunExecutionPath(settings.PollName, settings.SrcFilePath);
+
+            return (int)ExitCodes.Success;
+        }
+        catch (DataGatewayServiceException e)
+        {
+            AnsiConsole.WriteException(e);
+
+            return (int)ExitCodes.DataGatewayError;
         }
         catch (PollLoadingServiceException e)
         {
@@ -46,8 +54,6 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
 
             return (int)ExitCodes.OtherError;
         }
-
-        return (int)ExitCodes.Success;
     }
 
     private void RunExecutionPath(string pollName, string srcFilePath)

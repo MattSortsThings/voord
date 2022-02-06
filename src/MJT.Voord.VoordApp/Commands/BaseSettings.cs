@@ -11,8 +11,7 @@ public abstract class BaseSettings : CommandSettings
         PollName = pollName;
     }
 
-    [CommandArgument(0, "<PollName>")]
-    public string PollName { get; }
+    [CommandArgument(0, "<PollName>")] public string PollName { get; }
 
     public override ValidationResult Validate()
     {

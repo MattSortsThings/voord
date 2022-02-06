@@ -18,7 +18,7 @@ public class ViewCommand : Command<ViewCommand.Settings>
     public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
     {
         RenderSessionHeader(settings.PollName);
-        
+
         ValidationResult x = settings.Validate();
         if (!x.Successful)
         {
@@ -30,6 +30,9 @@ public class ViewCommand : Command<ViewCommand.Settings>
         try
         {
             RunExecutionPath(settings.PollName);
+
+
+            return (int)ExitCodes.Success;
         }
         catch (DataGatewayServiceException e)
         {
@@ -37,8 +40,12 @@ public class ViewCommand : Command<ViewCommand.Settings>
 
             return (int)ExitCodes.DataGatewayError;
         }
+        catch (Exception e)
+        {
+            AnsiConsole.WriteException(e);
 
-        return (int)ExitCodes.Success;
+            return (int)ExitCodes.OtherError;
+        }
     }
 
     private void RunExecutionPath(string pollName)
@@ -66,7 +73,7 @@ public class ViewCommand : Command<ViewCommand.Settings>
         AnsiConsole.Write(panel);
         AnsiConsole.WriteLine();
     }
-    
+
     private void SetupAppData()
     {
         if (_dataGatewayService.AppDataExists) return;
