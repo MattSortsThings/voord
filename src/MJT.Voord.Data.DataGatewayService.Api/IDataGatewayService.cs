@@ -13,4 +13,6 @@ public interface IDataGatewayService
     void Persist(string pollName, Poll poll);
 
     Poll LoadPoll(string pollName);
+
+    IReadOnlyList<string> LoadAllPollNames();
 }

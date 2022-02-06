@@ -68,8 +68,30 @@ public class JsonDataGateway : IDataGatewayService
         }
         catch (Exception e)
         {
-            throw new DataGatewayServiceException("Something went wrong with the data gateway.", e);
+            throw new DataGatewayServiceException("Something went wrong while trying to load a poll.", e);
         }
+    }
+
+    public IReadOnlyList<string> LoadAllPollNames()
+    {
+        try
+        {
+            return GetAllPollNamesFromAppData();
+        }
+        catch (Exception e)
+        {
+            throw new DataGatewayServiceException("Something went wrong while trying to load all poll names.", e);
+        }
+    }
+
+    private IReadOnlyList<string> GetAllPollNamesFromAppData()
+    {
+        Persistence data = LoadAllAppData();
+
+        List<string> names = data.Polls.Select(p => p.PollName).ToList();
+        names.Sort();
+
+        return names;
     }
 
     private void OverwriteAllAppData(Persistence data)

@@ -25,6 +25,10 @@ public static class SpectreAppBuilder
             config.AddCommand<ViewCommand>("view")
                 .WithDescription("Displays the results of a single poll.")
                 .WithExample(new[] { "view", "ExamplePoll" });
+
+            config.AddCommand<NamesCommand>("names")
+                .WithDescription("Displays the names of all available polls.")
+                .WithExample(new[] { "names" });
         });
 
         return app;
