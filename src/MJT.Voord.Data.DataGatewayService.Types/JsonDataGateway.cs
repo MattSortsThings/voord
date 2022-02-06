@@ -56,8 +56,22 @@ public class JsonDataGateway : IDataGatewayService
 
     public void Persist(string pollName, Poll poll)
     {
-        Console.WriteLine("Data gateway is persisting a poll called " + pollName + " with " + poll.Candidates.Count +
-                          "candidates");
+        Persistence data = LoadAllAppData();
+
+        var overwritten = false;
+        for (var i = 0; i < data.Polls.Count && !overwritten; i++)
+        {
+            if (data.Polls[i].PollName != pollName) continue;
+            data.Polls[i].Poll = poll;
+            overwritten = true;
+        }
+
+        if (!overwritten)
+        {
+            data.Polls.Add(new PollPersistenceModel(pollName, poll));
+        }
+
+        SaveAllAppData(data);
     }
 
     public Poll LoadPoll(string pollName)
@@ -89,5 +103,12 @@ public class JsonDataGateway : IDataGatewayService
 
         return JsonSerializer.Deserialize<Persistence>(json) ??
                throw new InvalidOperationException("Unable to deserialize JSON.");
+    }
+
+
+    private void SaveAllAppData(Persistence data)
+    {
+        string json = JsonSerializer.Serialize(data);
+        _fileSystem.File.WriteAllText(_appDataFilePath, json);
     }
 }

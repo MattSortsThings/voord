@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using MJT.Voord.Data.DataGatewayService.Api;
+using MJT.Voord.VotingDomain.Types;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -26,7 +27,30 @@ public class ViewCommand : Command<ViewCommand.Settings>
             return (int)ExitCodes.InvalidCommandArgsError;
         }
 
-        return 0;
+        try
+        {
+            RunExecutionPath(settings.PollName);
+        }
+        catch (DataGatewayServiceException e)
+        {
+            AnsiConsole.WriteException(e);
+
+            return (int)ExitCodes.DataGatewayError;
+        }
+
+        return (int)ExitCodes.Success;
+    }
+
+    private void RunExecutionPath(string pollName)
+    {
+        SetupAppData();
+        Poll activePoll = LoadPoll(pollName);
+        AnsiConsole.Write(activePoll.ToString());
+    }
+
+    private Poll LoadPoll(string pollName)
+    {
+        return _dataGatewayService.LoadPoll(pollName);
     }
 
     private static void RenderSessionHeader(string pollName)
@@ -41,6 +65,13 @@ public class ViewCommand : Command<ViewCommand.Settings>
         var panel = new Panel($"[bold]Poll Name: [/]{pollName}");
         AnsiConsole.Write(panel);
         AnsiConsole.WriteLine();
+    }
+    
+    private void SetupAppData()
+    {
+        if (_dataGatewayService.AppDataExists) return;
+        _dataGatewayService.WipeAllAppData();
+        _dataGatewayService.LoadSeedData();
     }
 
     public sealed class Settings : BaseSettings

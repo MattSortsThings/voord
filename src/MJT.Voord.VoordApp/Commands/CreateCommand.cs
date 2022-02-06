@@ -32,7 +32,7 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
 
         try
         {
-            RunExecutionPath(settings.SrcFilePath);
+            RunExecutionPath(settings.PollName, settings.SrcFilePath);
         }
         catch (PollLoadingServiceException e)
         {
@@ -50,15 +50,12 @@ public sealed class CreateCommand : Command<CreateCommand.Settings>
         return (int)ExitCodes.Success;
     }
 
-    private void RunExecutionPath(string srcFilePath)
+    private void RunExecutionPath(string pollName, string srcFilePath)
     {
         SetupAppData();
         Poll newPoll = LoadNewPoll(srcFilePath);
 
-        foreach (Candidate candidate in newPoll.Candidates)
-        {
-            AnsiConsole.WriteLine(candidate.Id + " " + candidate.Name);
-        }
+        _dataGatewayService.Persist(pollName, newPoll);
     }
 
     private void SetupAppData()
