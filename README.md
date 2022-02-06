@@ -1,6 +1,6 @@
 # Voord - Hackaway v5
 
-**Voord** is an **Ord**ered **Vo**ting app created by Matt Tantony at the Royal Hackaway, 5-6 February 2022.
+**Voord** is an ordered voting app created by Matt Tantony at the Royal Hackaway, 5-6 February 2022.
 
 It's a .NET 6 console app that lets people create and vote on multiple-choice polls. You cast your vote by putting all the candidates in preferential order (from worst to best). The app uses a log function to convert the jurors' preferences into points and determine the poll winner. This app was inspired by the voting method used by the international juries in the Eurovision Song Contest.
 
@@ -15,6 +15,19 @@ A Voord is also this faintly sinister *Doctor Who* monster from the 1960s:
   * [Get the Names of All Available Polls](#get-the-names-of-all-available-polls)
   * [Vote in a Poll](#vote-in-a-poll)
   * [View Poll Results](#view-poll-results)
+
+## The Scoring Algorithm
+As mentioned above, a juror votes in a poll by ranking all the candidates in preferential order from worst to best. Their preferences are converted into points using a simple log function:
+
+In a poll of _n_ candidates, if a juror awards candidate _c_ a rank of _r_, the candidate is awarded _y_ points, where
+
+y = 100 - (100 * (Log (base n) r)
+
+For example, in a poll with 6 candidates, the juror's rankings are converted into points as shown on the graph below. 
+
+![Graph of example juror's rankings and points](images/ExampleJurorScoringFunction.jpg)
+
+This means that the first placed (i.e. 1st) candidate gets 100 points, the last placed (i,e. 6th) candidate gets 0 points, and the intermediate candidates are assigned points across a logarithmic distribution. 
 
 ## Technologies
 
