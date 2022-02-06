@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MJT.Voord.Data.DataGatewayS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results", "Results", "{6B37B72A-AC4B-4F87-866E-24F8FF636D76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MJT.Voord.Results.Models", "src\MJT.Voord.Results.Models\MJT.Voord.Results.Models.csproj", "{51D0E348-A92D-4739-8418-D768B28E01FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{BFD1DE44-D621-4D90-91E2-0795F2F1F2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFD1DE44-D621-4D90-91E2-0795F2F1F2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFD1DE44-D621-4D90-91E2-0795F2F1F2FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D0E348-A92D-4739-8418-D768B28E01FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D0E348-A92D-4739-8418-D768B28E01FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D0E348-A92D-4739-8418-D768B28E01FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D0E348-A92D-4739-8418-D768B28E01FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +111,7 @@ Global
 		{77BE959B-F357-4EA3-9F01-4FCB4D9B7CDA} = {025B748B-377E-43E2-8B58-6D1319767912}
 		{BFD1DE44-D621-4D90-91E2-0795F2F1F2FB} = {025B748B-377E-43E2-8B58-6D1319767912}
 		{6B37B72A-AC4B-4F87-866E-24F8FF636D76} = {15A76BAF-7EBA-46E8-B811-0ADA5277F153}
+		{51D0E348-A92D-4739-8418-D768B28E01FC} = {6B37B72A-AC4B-4F87-866E-24F8FF636D76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B530B3E-45D5-40B6-9FE3-8A721BA4B0D2}
