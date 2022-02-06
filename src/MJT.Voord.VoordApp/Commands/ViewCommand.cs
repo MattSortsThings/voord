@@ -57,10 +57,7 @@ public class ViewCommand : Command<ViewCommand.Settings>
         SetupAppData();
         Poll activePoll = LoadPoll(pollName);
         IReadOnlyList<Result> results = ComputeResults(activePoll);
-        foreach (var r in results)
-        {
-            AnsiConsole.Write("1");
-        }
+        RenderBarChart(results);
     }
 
     private Poll LoadPoll(string pollName)
@@ -71,6 +68,33 @@ public class ViewCommand : Command<ViewCommand.Settings>
     private IReadOnlyList<Result> ComputeResults(Poll poll)
     {
         return _pollResultsService.ComputeResults(poll);
+    }
+
+    private static void RenderBarChart(IReadOnlyList<Result> results)
+    {
+        var barChart = new BarChart().Width(30);
+
+        (string n1, int tp1, _) = results[0];
+        barChart.AddItem(n1, tp1, Color.Gold1);
+
+        int counter = 1;
+        
+        if (results.Count > 3)
+        {
+            (string n2, int tp2, _) = results[1];
+            barChart.AddItem(n2, tp2, Color.LightSlateBlue);
+            
+            (string n3, int tp3, _) = results[2];
+            barChart.AddItem(n3, tp3, Color.RosyBrown);
+
+            counter = 3;
+        }
+
+        for (; counter < results.Count; counter++)
+        {
+            barChart.AddItem(results[counter].Name, results[counter].TotalPoints, Color.White);
+        }
+        AnsiConsole.Write(barChart);
     }
 
     private static void RenderSessionHeader(string pollName)
